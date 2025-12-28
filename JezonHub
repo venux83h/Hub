@@ -1,7 +1,14 @@
-local Version = "1.0.3"
-local WindUI = loadstring(game:HttpGet(
-    "https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"
-))()
+local Version = "1.6.41"
+local success, WindUI = pcall(function()
+    return loadstring(game:HttpGet(
+        "https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"
+    ))()
+end)
+
+if not success then
+    warn("WindUI failed to load:", WindUI)
+    return
+end
 
 local Window = WindUI:CreateWindow({
     Title = "Brookhaven Rp🏡 | Jezon Hub",
@@ -16,7 +23,7 @@ local Tab = Window:Tab({
     Locked = false,
 })
 
-local function changeBody(args)
+local function changeBody(flatArgs)
     local ReplicatedStorage = game:GetService("ReplicatedStorage")
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
@@ -26,27 +33,20 @@ local function changeBody(args)
 
     local remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody")
     local success, err = pcall(function()
-        remote:InvokeServer(unpack(args))
+        remote:InvokeServer(flatArgs)
     end)
-    if not success then warn("Failed to change body:", err) end
+    if not success then
+        warn("Failed to change body:", err)
+    end
 end
 
--- ===== Buttons with formatted args =====
+-- ===== Buttons with flattened args =====
 Tab:Button({
     Title = "Zepeto [Boy]",
     Desc = "Indonesia 🇮🇩",
     Locked = false,
     Callback = function()
-        local args = {
-            [1] = {
-                [1] = 123916977258376,
-                [2] = 121397669380873,
-                [3] = 116229930426772,
-                [4] = 103224430842613,
-                [5] = 92565592431265,
-                [6] = 0
-            }
-        }
+        local args = {123916977258376, 121397669380873, 116229930426772, 103224430842613, 92565592431265, 0}
         changeBody(args)
     end
 })
@@ -56,16 +56,7 @@ Tab:Button({
     Desc = "Philippines 🇵🇭",
     Locked = false,
     Callback = function()
-        local args = {
-            [1] = {
-                [1] = 115745153758680,
-                [2] = 76683091425509,
-                [3] = 75159926897589,
-                [4] = 80766960128463,
-                [5] = 90734460351120,
-                [6] = 0
-            }
-        }
+        local args = {115745153758680, 76683091425509, 75159926897589, 80766960128463, 90734460351120, 0}
         changeBody(args)
     end
 })
@@ -75,16 +66,7 @@ Tab:Button({
     Desc = "Indonesia 🇮🇩",
     Locked = false,
     Callback = function()
-        local args = {
-            [1] = {
-                [1] = 131748111436488,
-                [2] = 135594569190015,
-                [3] = 109067870029660,
-                [4] = 123554824904996,
-                [5] = 117665557381131,
-                [6] = 0
-            }
-        }
+        local args = {131748111436488, 135594569190015, 109067870029660, 123554824904996, 117665557381131, 0}
         changeBody(args)
     end
 })
