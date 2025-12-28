@@ -1,35 +1,29 @@
---// Jezon Hub Bundles [Full Body Without Head]
+--// Jezon Hub | Brookhaven Rp🏡
+--// Author: By ImpossibleObby32
 
-local Version = "1.6.41"
+--// Rayfield UI Loader
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
 
--- Safe WindUI load
-local WindUI
-local success, result = pcall(function()
-    return loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
-end)
-if success then
-    WindUI = result
-else
-    warn("Failed to load WindUI:", result)
-    return
-end
-
--- Window
-local Window = WindUI:CreateWindow({
-    Title = "Brookhaven Rp🏡 | Jezon Hub",
-    Icon = "door-open",
-    Author = "By ImpossibleObby32 [Roblox User]",
-    Folder = "JezonHub",
+--// Window
+local Window = Rayfield:CreateWindow({
+    Name = "Brookhaven Rp🏡 | Jezon Hub",
+    LoadingTitle = "Jezon Hub",
+    LoadingSubtitle = "by ImpossibleObby32",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "JezonHub",
+        FileName = "Settings"
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = false
 })
 
--- Tab
-local Tab = Window:Tab({
-    Title = "Bundles [Full Body Without Head]",
-    Icon = "bird",
-    Locked = false,
-})
+--// Tab
+local Tab = Window:CreateTab("Bundles [Full Body Without Head]", 4483362458) -- bird icon id
 
--- Safe remote call function
+--// Safe remote call function
 local function changeBody(args)
     local ReplicatedStorage = game:GetService("ReplicatedStorage")
     local Players = game:GetService("Players")
@@ -43,33 +37,27 @@ local function changeBody(args)
     if not ok then warn("Failed to change body:", err) end
 end
 
--- Buttons (exactly your original IDs and layout)
-Tab:Button({
-    Title = "Zepeto [Boy]",
-    Desc = "Indonesia 🇮🇩",
-    Locked = false,
+--// Buttons
+Tab:CreateButton({
+    Name = "Zepeto [Boy]",
     Callback = function()
-        local args = { [1] = { [1] = 123916977258376, [2] = 121397669380873, [3] = 116229930426772, [4] = 103224430842613, [5] = 92565592431265, [6] = 0 } }
+        local args = { [1] = {123916977258376, 121397669380873, 116229930426772, 103224430842613, 92565592431265, 0} }
         changeBody(args)
     end
 })
 
-Tab:Button({
-    Title = "Zepeto [Girl]",
-    Desc = "Philippines 🇵🇭",
-    Locked = false,
+Tab:CreateButton({
+    Name = "Zepeto [Girl] - Philippines 🇵🇭",
     Callback = function()
-        local args = { [1] = { [1] = 115745153758680, [2] = 76683091425509, [3] = 75159926897589, [4] = 80766960128463, [5] = 90734460351120, [6] = 0 } }
+        local args = { [1] = {115745153758680, 76683091425509, 75159926897589, 80766960128463, 90734460351120, 0} }
         changeBody(args)
     end
 })
 
-Tab:Button({
-    Title = "Zepeto [Girl]",
-    Desc = "Indonesia 🇮🇩",
-    Locked = false,
+Tab:CreateButton({
+    Name = "Zepeto [Girl] - Indonesia 🇮🇩",
     Callback = function()
-        local args = { [1] = { [1] = 131748111436488, [2] = 135594569190015, [3] = 109067870029660, [4] = 123554824904996, [5] = 117665557381131, [6] = 0 } }
+        local args = { [1] = {131748111436488, 135594569190015, 109067870029660, 123554824904996, 117665557381131, 0} }
         changeBody(args)
     end
 })
