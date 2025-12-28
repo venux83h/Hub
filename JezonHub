@@ -18,15 +18,34 @@ end
 --// Window
 local Window = Rayfield:CreateWindow({
     Name = "Brookhaven Rp🏡 | Jezon Hub",
+    Icon = 0,
     LoadingTitle = "Jezon Hub",
     LoadingSubtitle = "by ImpossibleObby32",
+    ShowText = "Jezon",
+    Theme = "Default",
+    ToggleUIKeybind = "K",
+    DisableRayfieldPrompts = false,
+    DisableBuildWarnings = false,
     ConfigurationSaving = {
         Enabled = true,
         FolderName = "JezonHub",
         FileName = "Settings"
     },
-    Discord = { Enabled = false },
-    KeySystem = false
+    Discord = {
+        Enabled = false,
+        Invite = "noinvitelink",
+        RememberJoins = true
+    },
+    KeySystem = false,
+    KeySettings = {
+        Title = "Untitled",
+        Subtitle = "Key System",
+        Note = "No method of obtaining the key is provided",
+        FileName = "Key",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"Hello"}
+    }
 })
 
 --// Tab
