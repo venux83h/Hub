@@ -1,8 +1,19 @@
 --// Jezon Hub | Brookhaven Rp🏡
 --// Author: By ImpossibleObby32
 
+-- Wait for game to load
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
 --// Rayfield UI Loader
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
+local success, Rayfield = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
+end)
+if not success or not Rayfield then
+    warn("Failed to load Rayfield")
+    return
+end
 
 --// Window
 local Window = Rayfield:CreateWindow({
@@ -14,14 +25,12 @@ local Window = Rayfield:CreateWindow({
         FolderName = "JezonHub",
         FileName = "Settings"
     },
-    Discord = {
-        Enabled = false
-    },
+    Discord = { Enabled = false },
     KeySystem = false
 })
 
 --// Tab
-local Tab = Window:CreateTab("Bundles [Full Body Without Head]", 4483362458) -- bird icon id
+local Tab = Window:CreateTab("Bundles [Full Body Without Head]", 4483362458)
 
 --// Safe remote call function
 local function changeBody(args)
@@ -29,8 +38,24 @@ local function changeBody(args)
     local Players = game:GetService("Players")
     local player = Players.LocalPlayer
     if not player then return end
-    player.CharacterAdded:Wait() -- wait until character exists
-    local remote = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("ChangeCharacterBody")
+
+    -- Wait for character
+    if not player.Character then
+        player.CharacterAdded:Wait()
+    end
+
+    -- Wait for remote
+    local remote
+    for _ = 1, 10 do
+        remote = ReplicatedStorage:FindFirstChild("Remotes") and ReplicatedStorage.Remotes:FindFirstChild("ChangeCharacterBody")
+        if remote then break end
+        task.wait(0.5)
+    end
+    if not remote then
+        warn("ChangeCharacterBody remote not found")
+        return
+    end
+
     local ok, err = pcall(function()
         remote:InvokeServer(unpack(args))
     end)
