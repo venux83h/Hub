@@ -1,23 +1,20 @@
--- JezonHub | Creator: LARKY | Version: 1.0.0 | Theme: Crimson
+local Version = "1.0.2"
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/" .. Version .. "/main.lua"))()
 
--- Make sure WindUI is loaded
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/LARKY-WindUI/WindUI/main/Init.lua"))() -- Example URL
-local Window = WindUI:Window({
+local Window = WindUI:CreateWindow({
     Title = "JezonHub",
-    Theme = "Crimson",
-    ToggleKey = Enum.KeyCode.RightShift, -- change toggle key if you want
-    Size = UDim2.new(0, 500, 0, 400)
+    Icon = "bird",
+    Author = "By LARKY",
+    Folder = "JezonHub",
 })
 
--- Tab: Body
 local Tab = Window:Tab({
-    Title = "Body",
+    Title = "Bundles [Full Body Without Head]",
     Icon = "bird",
     Locked = false,
 })
 
--- Button 1: Zepeto [Boy] (Indonesia 🇮🇩)
-Tab:Button({
+local Button = Tab:Button({
     Title = "Zepeto [Boy]",
     Desc = "Indonesia 🇮🇩",
     Locked = false,
@@ -36,8 +33,7 @@ Tab:Button({
     end
 })
 
--- Button 2: Zepeto [Girl] (Philippines 🇵🇭)
-Tab:Button({
+local Button = Tab:Button({
     Title = "Zepeto [Girl]",
     Desc = "Philippines 🇵🇭",
     Locked = false,
@@ -56,8 +52,7 @@ Tab:Button({
     end
 })
 
--- Button 3: Zepeto [Girl] (Indonesia 🇮🇩)
-Tab:Button({
+local Button = Tab:Button({
     Title = "Zepeto [Girl]",
     Desc = "Indonesia 🇮🇩",
     Locked = false,
@@ -76,5 +71,4 @@ Tab:Button({
     end
 })
 
--- Open Window
 Window:Open()
