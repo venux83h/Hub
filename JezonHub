@@ -1,0 +1,80 @@
+-- JezonHub | Creator: LARKY | Version: 1.0.0 | Theme: Crimson
+
+-- Make sure WindUI is loaded
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/LARKY-WindUI/WindUI/main/Init.lua"))() -- Example URL
+local Window = WindUI:Window({
+    Title = "JezonHub",
+    Theme = "Crimson",
+    ToggleKey = Enum.KeyCode.RightShift, -- change toggle key if you want
+    Size = UDim2.new(0, 500, 0, 400)
+})
+
+-- Tab: Body
+local Tab = Window:Tab({
+    Title = "Body",
+    Icon = "bird",
+    Locked = false,
+})
+
+-- Button 1: Zepeto [Boy] (Indonesia 🇮🇩)
+Tab:Button({
+    Title = "Zepeto [Boy]",
+    Desc = "Indonesia 🇮🇩",
+    Locked = false,
+    Callback = function()
+        local args = {
+            [1] = {
+                [1] = 123916977258376,
+                [2] = 121397669380873,
+                [3] = 116229930426772,
+                [4] = 103224430842613,
+                [5] = 92565592431265,
+                [6] = 0
+            }
+        }
+        game:GetService("ReplicatedStorage").Remotes.ChangeCharacterBody:InvokeServer(unpack(args))
+    end
+})
+
+-- Button 2: Zepeto [Girl] (Philippines 🇵🇭)
+Tab:Button({
+    Title = "Zepeto [Girl]",
+    Desc = "Philippines 🇵🇭",
+    Locked = false,
+    Callback = function()
+        local args = {
+            [1] = {
+                [1] = 115745153758680,
+                [2] = 76683091425509,
+                [3] = 75159926897589,
+                [4] = 80766960128463,
+                [5] = 90734460351120,
+                [6] = 0
+            }
+        }
+        game:GetService("ReplicatedStorage").Remotes.ChangeCharacterBody:InvokeServer(unpack(args))
+    end
+})
+
+-- Button 3: Zepeto [Girl] (Indonesia 🇮🇩)
+Tab:Button({
+    Title = "Zepeto [Girl]",
+    Desc = "Indonesia 🇮🇩",
+    Locked = false,
+    Callback = function()
+        local args = {
+            [1] = {
+                [1] = 131748111436488,
+                [2] = 135594569190015,
+                [3] = 109067870029660,
+                [4] = 123554824904996,
+                [5] = 117665557381131,
+                [6] = 0
+            }
+        }
+        game:GetService("ReplicatedStorage").Remotes.ChangeCharacterBody:InvokeServer(unpack(args))
+    end
+})
+
+-- Open Window
+Window:Open()
