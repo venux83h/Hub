@@ -1,107 +1,60 @@
---// Jezon Hub | Brookhaven Rp🏡
---// Author: By ImpossibleObby32
+-- Load WindUI
+local Version = "1.6.41"
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/"..Version.."/main.lua"))()
 
--- Wait for game to load
-if not game:IsLoaded() then
-    game.Loaded:Wait()
-end
-
---// Rayfield UI Loader
-local success, Rayfield = pcall(function()
-    return loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Rayfield/main/source"))()
-end)
-if not success or not Rayfield then
-    warn("Failed to load Rayfield")
-    return
-end
-
---// Window
-local Window = Rayfield:CreateWindow({
-    Name = "Brookhaven Rp🏡 | Jezon Hub",
-    Icon = 0,
-    LoadingTitle = "Jezon Hub",
-    LoadingSubtitle = "by ImpossibleObby32",
-    ShowText = "Jezon",
-    Theme = "Default",
-    ToggleUIKeybind = "K",
-    DisableRayfieldPrompts = false,
-    DisableBuildWarnings = false,
-    ConfigurationSaving = {
-        Enabled = true,
-        FolderName = "JezonHub",
-        FileName = "Settings"
-    },
-    Discord = {
-        Enabled = false,
-        Invite = "noinvitelink",
-        RememberJoins = true
-    },
-    KeySystem = false,
-    KeySettings = {
-        Title = "Untitled",
-        Subtitle = "Key System",
-        Note = "No method of obtaining the key is provided",
-        FileName = "Key",
-        SaveKey = true,
-        GrabKeyFromSite = false,
-        Key = {"Hello"}
-    }
+-- Create Window
+local Window = WindUI:CreateWindow({
+    Title = "Jezon Hub | Brookhaven 🏠",
+    Icon = "house",
+    Theme = "Crimson",
+    Folder = "JezonHub"
 })
 
---// Tab
-local Tab = Window:CreateTab("Bundles [Full Body Without Head]", 4483362458)
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
---// Safe remote call function
-local function changeBody(args)
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    if not player then return end
+-- Create Tab
+local Tab = Window:CreateTab("Main")
 
-    -- Wait for character
-    if not player.Character then
-        player.CharacterAdded:Wait()
+-- Helper function to apply HumanoidDescription
+local function applyBody(descriptionParts)
+    if player.Character and player.Character:FindFirstChild("Humanoid") then
+        local hd = Instance.new("HumanoidDescription")
+
+        hd.LeftArm = descriptionParts.LeftArm
+        hd.RightArm = descriptionParts.RightArm
+        hd.Torso = descriptionParts.Torso
+        hd.LeftLeg = descriptionParts.LeftLeg
+        hd.RightLeg = descriptionParts.RightLeg
+
+        player.Character.Humanoid:ApplyDescription(hd)
     end
-
-    -- Wait for remote
-    local remote
-    for _ = 1, 10 do
-        remote = ReplicatedStorage:FindFirstChild("Remotes") and ReplicatedStorage.Remotes:FindFirstChild("ChangeCharacterBody")
-        if remote then break end
-        task.wait(0.5)
-    end
-    if not remote then
-        warn("ChangeCharacterBody remote not found")
-        return
-    end
-
-    local ok, err = pcall(function()
-        remote:InvokeServer(unpack(args))
-    end)
-    if not ok then warn("Failed to change body:", err) end
 end
 
---// Buttons
+-- Button 1: Boy Zepeto (It-Boy Doll 3D)
 Tab:CreateButton({
-    Name = "Zepeto [Boy]",
+    Name = "Zepeto Boy Body",
     Callback = function()
-        local args = { [1] = {123916977258376, 121397669380873, 116229930426772, 103224430842613, 92565592431265, 0} }
-        changeBody(args)
+        applyBody({
+            LeftArm = 76152862548503,
+            RightArm = 87930927259747,
+            Torso = 82145633539687,
+            LeftLeg = 72418604550719,
+            RightLeg = 92158906746914
+        })
     end
 })
 
+-- Button 2: Girl Zepeto (It-Girl Model Doll)
 Tab:CreateButton({
-    Name = "Zepeto [Girl] - Philippines 🇵🇭",
+    Name = "Zepeto Girl Body",
     Callback = function()
-        local args = { [1] = {115745153758680, 76683091425509, 75159926897589, 80766960128463, 90734460351120, 0} }
-        changeBody(args)
-    end
-})
-
-Tab:CreateButton({
-    Name = "Zepeto [Girl] - Indonesia 🇮🇩",
-    Callback = function()
-        local args = { [1] = {131748111436488, 135594569190015, 109067870029660, 123554824904996, 117665557381131, 0} }
-        changeBody(args)
+        applyBody({
+            LeftArm = 115854878218143,
+            RightArm = 87005804262368,
+            Torso = 109422308106073,
+            LeftLeg = 128753002254157,
+            RightLeg = 112601745140497
+        })
     end
 })
